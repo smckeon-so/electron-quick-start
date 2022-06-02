@@ -25,7 +25,7 @@ jobs:
       with:
         repo: 'smckeon-so/play-with-gh-actions'
         regex: true
-        file: '*\\.txt'
+        file: '*.txt'
         
     - run: ls -al
       
