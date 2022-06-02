@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
@@ -28,7 +28,10 @@ jobs:
         version: 'tags/main'
         file: 'ui-build-artifacts.zip'
         
-    - run: ls -al
+
+    - run: unzip ui-build-artifacts.zip
+    - run: mv ./ui-build-artifacts ./src
+    - run: ls -al src
       
     - uses: actions/checkout@v3
     
@@ -40,7 +43,8 @@ jobs:
 
 
 #       Copy them into the app dir
-#       Build prod app
+
         
     - run: npm ci
+    # Build prod app
     - run: npm run make
