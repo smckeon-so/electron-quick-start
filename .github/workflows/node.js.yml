@@ -29,10 +29,9 @@ jobs:
         file: 'ui-build-artifacts.zip'
         
     - run: unzip ui-build-artifacts.zip
-    - run: ls -al
     - run: rm -fr src
+    # Copy assets into the app src
     - run: mv build src
-    - run: ls -al src
       
     - uses: actions/checkout@v3
     
@@ -43,9 +42,14 @@ jobs:
         cache: 'npm'
 
 
-#       Copy them into the app dir
+
 
         
     - run: npm ci
     # Build prod app
     - run: npm run make
+    
+    - run: ls -al out
+    
+    # zip the final build
+    # upload to release
