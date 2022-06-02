@@ -20,12 +20,13 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    # Fetch UI assets - somehow
     - name: Fetch Github Release Asset
       uses: dsaltares/fetch-gh-release-asset@1.0.0
       with:
         repo: 'smckeon-so/play-with-gh-actions'
-        regex: true
-        file: '1.0.1.zip'
+        version: 'tags/main'
+        file: 'ui-build-artifacts.zip'
         
     - run: ls -al
       
@@ -36,7 +37,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-#       Fetch UI assets - somehow
+
 
 #       Copy them into the app dir
 #       Build prod app
