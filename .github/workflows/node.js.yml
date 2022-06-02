@@ -26,5 +26,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+#       Fetch UI assets - somehow
+
+#       Copy them into the app dir
+#       Build prod app
+        
     - run: npm ci
     - run: npm run make
