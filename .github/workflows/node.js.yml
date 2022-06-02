@@ -25,6 +25,8 @@ jobs:
       with:
         repo: 'smckeon-so/play-with-gh-actions'
         file: 'one.txt'
+        
+    - run: cat one.txt
       
     - uses: actions/checkout@v3
     
