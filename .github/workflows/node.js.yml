@@ -28,10 +28,10 @@ jobs:
         version: 'tags/main'
         file: 'ui-build-artifacts.zip'
         
-
+    - run: ls -al
     - run: unzip ui-build-artifacts.zip
     - run: rm -fr src
-    - run: mv ui-build-artifacts src
+    - run: mv build src
     - run: ls -al src
       
     - uses: actions/checkout@v3
