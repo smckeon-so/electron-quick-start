@@ -30,7 +30,8 @@ jobs:
         
 
     - run: unzip ui-build-artifacts.zip
-    - run: mv ./ui-build-artifacts ./src
+    - run: rm -fr src
+    - run: mv ui-build-artifacts src
     - run: ls -al src
       
     - uses: actions/checkout@v3
