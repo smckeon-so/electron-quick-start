@@ -24,9 +24,9 @@ jobs:
       uses: dsaltares/fetch-gh-release-asset@1.0.0
       with:
         repo: 'smckeon-so/play-with-gh-actions'
-        file: 'one.txt'
+        file: '*.zip'
         
-    - run: cat one.txt
+    - run: ls -al
       
     - uses: actions/checkout@v3
     
