@@ -28,8 +28,8 @@ jobs:
         version: 'tags/main'
         file: 'ui-build-artifacts.zip'
         
-    - run: ls -al
     - run: unzip ui-build-artifacts.zip
+    - run: ls -al
     - run: rm -fr src
     - run: mv build src
     - run: ls -al src
