@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            artifact_name: darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
+            artifact_name: zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
           - os: ubuntu-latest
             artifact_name: mything
           - os: windows-latest
@@ -48,7 +48,7 @@ jobs:
     # Build prod app
     - run: npm run make
 
-    - run: ls -al out/make/zip
+    - run: ls -al out/make
 
     # upload mac build to release
     - name: Upload binaries to release
