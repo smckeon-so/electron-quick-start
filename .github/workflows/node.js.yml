@@ -11,16 +11,21 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
-
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        include:
+          - os: macos-latest
+            artifact_name: darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
+          - os: ubuntu-latest
+            artifact_name: mything
+          - os: windows-latest
+            artifact_name: mything.exe
+
 
     steps:      
     - uses: actions/checkout@v3
-    
+
         # Fetch UI assets - somehow
     - name: Fetch Github Release Asset
       uses: dsaltares/fetch-gh-release-asset@1.0.0
@@ -28,31 +33,29 @@ jobs:
         repo: 'smckeon-so/play-with-gh-actions'
         version: 'tags/main'
         file: 'ui-build-artifacts.zip'
-        
+
     - run: unzip ui-build-artifacts.zip
     # Copy assets into the app src
-    - run: ls -al build
     - run: mv build/* .
-    - run: ls -al
-    
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
         cache: 'npm'
 
     - run: npm ci
     # Build prod app
     - run: npm run make
-    
-    - run: ls -al out/make/zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
+
+    - run: ls -al out/make/zip
 
     # upload mac build to release
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: out/make/zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
+        file: out/make/zip/${{ matrix.artifact_name }}
         tag: ${{ github.ref }}
         overwrite: true
         body: "Final build artifacts"
