@@ -31,7 +31,7 @@ jobs:
     - run: unzip ui-build-artifacts.zip
     - run: rm -fr src
     # Copy assets into the app src
-    - run: mv build src
+    - run: mv build/* .
       
     - uses: actions/checkout@v3
     
