@@ -20,8 +20,7 @@ jobs:
           - os: ubuntu-latest
             artifact_name: deb/x64/electron-quick-start_1.0.0_amd64.deb
           - os: windows-latest
-            artifact_name: mything.exe
-
+            artifact_name: squirrel.windows\x64\electron-quick-start-1.0.0 Setup.exe
 
     steps:      
     - uses: actions/checkout@v3
