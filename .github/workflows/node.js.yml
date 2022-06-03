@@ -41,14 +41,20 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-
-
-
-        
     - run: npm ci
     # Build prod app
     - run: npm run make
     
     - run: ls -al out/make/zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
-    # out/make/zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
-    # upload to release
+
+    # upload mac build to release
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: out/make/zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Final build artifacts"
+
+
