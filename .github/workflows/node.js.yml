@@ -29,7 +29,6 @@ jobs:
         file: 'ui-build-artifacts.zip'
         
     - run: unzip ui-build-artifacts.zip
-    - run: rm -fr src
     # Copy assets into the app src
     - run: mv build/* .
       
