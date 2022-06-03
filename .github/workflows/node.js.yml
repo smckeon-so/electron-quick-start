@@ -50,7 +50,7 @@ jobs:
 
     
     - run: tree out/make
-      if: ${{matrix.os}} == "ubuntu-latest"
+      if: ${{matrix.os == "ubuntu-latest"}} 
 
     # upload mac build to release
     - name: Upload binaries to release
