@@ -18,7 +18,7 @@ jobs:
           - os: macos-latest
             artifact_name: zip/darwin/x64/electron-quick-start-darwin-x64-1.0.0.zip
           - os: ubuntu-latest
-            artifact_name: mything
+            artifact_name: deb/x64/electron-quick-start_1.0.0_amd64.deb
           - os: windows-latest
             artifact_name: mything.exe
 
@@ -49,8 +49,8 @@ jobs:
     - run: npm run make
 
     
-    - run: tree out/make
-      if: ${{matrix.os == 'ubuntu-latest'}} 
+    - run: tree out/make /f /a
+      if: ${{matrix.os == 'windows-latest'}} 
 
     # upload mac build to release
     - name: Upload binaries to release
