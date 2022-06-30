@@ -57,7 +57,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: out/make/${{ matrix.artifact_name }}
-        tag: ${{ github.ref }}
+        tag: "CCLAVE-2835/windows-platform-bug"
         overwrite: true
         body: "Final build artifacts"
 
